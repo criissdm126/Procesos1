@@ -1,20 +1,19 @@
 # Hacer un programa que calcula el área de la figura descomponiéndola en hilos para optimizar.
+import threading
 
-# Variables de control
-i = 0
-area_hilo1 = 0
-area_hilo2 = 0
-area_hilo3 = 0
+def area_figura(hilo1, hilo2, hilo3, num_hilos):
+    area_hilo = (hilo1 + hilo2 + hilo3) * 0.01
+    area_total = area_hilo * num_hilos
+    return area_total
 
-# Bucle para generar las alturas de los hilos
-while i <= 1000000000:
-    area_hilo1 += i * 0.08
-    area_hilo2 += i * 0.12
-    area_hilo3 += i * 0.06
-    i += 1
+# Parámetros de la figura
+hilo1 = 26
+hilo2 = 8
+hilo3 = 6
+num_hilos = 100000 # Valor más pequeño para probar
 
 # Calcular el área total de la figura
-area_total = area_hilo1 + area_hilo2 + area_hilo3
+area_total = area_figura(hilo1, hilo2, hilo3, num_hilos)
 
 # Imprimir el resultado
-print("El área total de la figura es: ", area_total)
+print("El área total de la figura es:", area_total)
