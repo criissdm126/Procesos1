@@ -1,4 +1,4 @@
-# Hacer un programa que calcula el área de la figura descomponiéndola en hilos para optimizar.
+# Enunciado: Hacer un programa que calcula el área de la figura descomponiéndola en hilos para optimizar.
 import threading
 
 def area_figura(hilo1, hilo2, hilo3, num_hilos):
