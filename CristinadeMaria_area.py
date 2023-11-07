@@ -1,19 +1,18 @@
 # Enunciado: Hacer un programa que calcula el área de la figura descomponiéndola en hilos para optimizar.
 import threading
 
-def area_figura(hilo1, hilo2, hilo3, num_hilos):
-    area_hilo = (hilo1 + hilo2 + hilo3) * 0.01
-    area_total = area_hilo * num_hilos
-    return area_total
+# Definir los valores de a, b y h
+a = 10  # en cm
+b = 8   # en cm
+h = 12  # en cm
 
-# Parámetros de la figura
-hilo1 = 26
-hilo2 = 8
-hilo3 = 6
-num_hilos = 100000 # Valor más pequeño para probar
+# Función para calcular el área
+def calcular_area(a, b, h):
+    area = (a + b) * h / 2
+    return area
 
-# Calcular el área total de la figura
-area_total = area_figura(hilo1, hilo2, hilo3, num_hilos)
+# Calcular el área
+area = calcular_area(a, b, h)
 
 # Imprimir el resultado
-print("El área total de la figura es:", area_total)
+print("El área de la figura es", area, "cm²")
