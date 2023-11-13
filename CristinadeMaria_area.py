@@ -1,32 +1,46 @@
-# Enunciado: Hacer un programa que calcula el área de la figura descomponiéndola en hilos para optimizar.
 import threading
 
-# Triángulo grande
-base_triangulo_grande = 10
-altura_triangulo_grande = 12
-area_triangulo_grande = 0.5 * base_triangulo_grande * altura_triangulo_grande
+def calcular_area_triangulo(base, altura, resultado):
+    # Función para calcular el área de un triángulo y agregarla a la lista de resultados
+    area = 0.5 * base * altura
+    resultado.append(area)
 
+def calcular_area_rectangulo(base, altura, resultado):
+    # Función para calcular el área de un rectángulo y agregarla a la lista de resultados
+    area = base * altura
+    resultado.append(area)
 
-# Rectángulo grande
-base_rectangulo_grande = 8
-altura_rectangulo_grande = 12
-area_rectangulo_grande = base_rectangulo_grande * altura_rectangulo_grande
+def main():
+    resultado = []  # Lista para almacenar los resultados de las áreas calculadas
 
+    # Triángulo grande
+    hilo1 = threading.Thread(target=calcular_area_triangulo, args=(10, 12, resultado))
+    
+    # Rectángulo grande
+    hilo2 = threading.Thread(target=calcular_area_rectangulo, args=(8, 12, resultado))
+    
+    # Rectángulo pequeño
+    hilo3 = threading.Thread(target=calcular_area_rectangulo, args=(6, 5, resultado))
+    
+    # Triángulo pequeño
+    hilo4 = threading.Thread(target=calcular_area_triangulo, args=(2, 5, resultado))
+    
+    # Iniciar los hilos
+    hilo1.start()
+    hilo2.start()
+    hilo3.start()
+    hilo4.start()
 
-# Rectángulo pequeño
-base_rectangulo_pequeño = 6
-altura_rectangulo_pequeño = 5
-area_rectangulo_pequeño = base_rectangulo_pequeño * altura_rectangulo_pequeño
+    # Esperar a que todos los hilos terminen
+    hilo1.join()
+    hilo2.join()
+    hilo3.join()
+    hilo4.join()
 
-# Triángulo pequeño
-base_triangulo_pequeño = 2
-altura_triangulo_pequeño = 5
-area_triangulo_pequeño = 0.5 * base_triangulo_pequeño * altura_triangulo_pequeño
+    # Calcular el área de la figura principal sumando todas las áreas calculadas
+    area_figura_principal = sum(resultado)
 
-# Base de la figura principal
-base_figura_principal = 26
+    print(f"El área de la figura principal es: {area_figura_principal}")
 
-# Área de la figura principal, suma de las áreas de las figuras anteriores
-area_figura_principal = area_triangulo_grande + area_rectangulo_grande + area_rectangulo_pequeño + area_triangulo_pequeño
-
-print(f"El área de la figura principal es: {area_figura_principal}")
+if __name__ == "__main__":
+    main()

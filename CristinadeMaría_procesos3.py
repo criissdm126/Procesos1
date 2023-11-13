@@ -11,13 +11,13 @@ import multiprocessing
 
 
 # Pide un texto por consola.
-def escritor(texto, fichero_salida):
-    with open(fichero_salida, "a") as file:
+def escritor(texto, nombre_fichero):
+    with open(nombre_fichero, "a") as file:
         file.write(texto + "\n")
 
 # Crear fichero
-def lector(fichero_salida):
-    with open(fichero_salida, "r") as file:
+def lector(nombre_fichero):
+    with open(nombre_fichero, "r") as file:
         texto = file.read()
     print(texto)
 
